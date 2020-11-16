@@ -43,6 +43,7 @@ const createItem = (element, createdByUser) => {
     form.setAttribute("class", "inputform");
     form.appendChild(checkbox);
     form.setAttribute("id", element._id);
+    preventSubmit(form);
 
     //create checkbox and set checkbox to checked if status is done
     checkbox.setAttribute("type", "checkbox");
@@ -59,6 +60,7 @@ const createItem = (element, createdByUser) => {
     if (element.done == "true") {
         textinput.classList.add("striked");
     }
+
 
 
     form.appendChild(image);
@@ -131,7 +133,7 @@ const makeStatusUpdatable = (box) => {
 
 //create function for updating task value
 const makeValueUpdatable = (text) => {
-    text.addEventListener("change", () => {
+    text.addEventListener("change", (e) => {
         const audio = new Audio('write.mp3');
         audio.play();
 
@@ -142,6 +144,14 @@ const makeValueUpdatable = (text) => {
 
         //perform API update
         putCheckbox(id, value, status);
+        e.preventdefault();
     })
 }
 
+//add this eventhandler to forms to prevent submitting
+const preventSubmit = (form) => {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        console.log('error')
+    })
+}

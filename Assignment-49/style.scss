@@ -78,11 +78,11 @@ img {
   justify-content: flex-start;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  input {
+  input.text {
     height: 50px;
-    width: 50px;
+    width: 100%;
     &:focus {
-      border: 0px;
+      outline: none;
     }
   }
 }
